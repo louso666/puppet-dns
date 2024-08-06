@@ -117,12 +117,12 @@ options {
     // you will need to update your keys.  See https://www.isc.org/bind-keys
     //========================================================================
 <% if @dnssec_enable -%>
-    dnssec-enable yes;
+    //dnssec-enable yes;
     <%- if @dnssec_validation != 'absent' -%>
-    dnssec-validation <%= @dnssec_validation %>;
+    //dnssec-validation <%= @dnssec_validation %>;
     <%- end -%>
 <% else -%>
-    dnssec-enable no;
+    //dnssec-enable no;
 <% end -%>
     auth-nxdomain no;    # conform to RFC1035
 
