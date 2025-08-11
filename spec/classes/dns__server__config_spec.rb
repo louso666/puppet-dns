@@ -31,4 +31,29 @@ describe 'dns::server::config', type: :class do
     it { is_expected.to contain_file('/etc/named.conf').with_owner('named') }
     it { is_expected.to contain_file('/etc/named.conf').with_content(/^include "\/etc\/named\/named.conf.options";$/) }
   end
+
+  context 'on a RedHat OS with dynamic includes' do
+    let(:facts) do
+      {
+        osfamily: 'RedHat',
+        concat_basedir: '/dne',
+      }
+    end
+
+    let(:params) do
+      {
+        manage_dynamic_includes: true,
+      }
+    end
+
+    it do
+      is_expected.to contain_file('/etc/named.conf')
+        .with_content(%r{include "/etc/named/zones.d/dynamic-keys.conf";})
+    end
+
+    it do
+      is_expected.to contain_file('/etc/named.conf')
+        .with_content(%r{include "/etc/named/zones.d/dynamic-zones.conf";})
+    end
+  end
 end

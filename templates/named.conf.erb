@@ -6,4 +6,8 @@ include "<%= @cfg_dir %>/named.conf.options";
 include "<%= @rfc1912_zones_cfg %>";
 <%- end -%>
 include "<%= @rndc_key_file %>";
+<%- if @manage_dynamic_includes -%>
+include "<%= @dynamic_include_dir %>/<%= @dynamic_keys_file %>";
+include "<%= @dynamic_include_dir %>/<%= @dynamic_zones_file %>";
+<%- end -%>
 include "<%= @cfg_dir %>/named.conf.local";
