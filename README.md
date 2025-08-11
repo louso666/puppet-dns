@@ -162,6 +162,31 @@ dns::zone {
 }
 ```
 
+### Dynamic include files
+
+The `dns` class can generate include files for dynamically updated zones and
+TSIG keys. Enable this behaviour with `manage_dynamic_includes` and supply
+the desired keys and zones:
+
+```puppet
+class { 'dns':
+  manage_dynamic_includes => true,
+  tsig_keys => {
+    'update-key' => {
+      'algo'   => 'hmac-sha256',
+      'secret' => 'verysecret==',
+    },
+  },
+  dynamic_zones => {
+    'dyn.example.com' => {
+      file         => '/var/named/dynamic/dyn.example.com',
+      allow_update => ['key update-key'],
+      allow_query  => ['any'],
+    },
+  },
+}
+```
+
 ### Exported resource patterns
 
 ```puppet

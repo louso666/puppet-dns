@@ -1,0 +1,7 @@
+<%- | Hash $tsig_keys | -%>
+<% $tsig_keys.each |$name, $data| { -%>
+key "<%= $name %>" {
+  algorithm <%= $data['algo'] %>;
+  secret "<%= $data['secret'] %>";
+};
+<% } -%>

@@ -1,0 +1,16 @@
+<%- | Hash $dynamic_zones | -%>
+<% $dynamic_zones.each |$zone, $data| { -%>
+zone "<%= $zone %>" IN {
+  type master;
+  file "<%= $data['file'] %>";
+  <%- if $data['allow_update'] -%>
+  allow-update { <%= Array($data['allow_update']).join('; ') %>; };
+  <%- end -%>
+  <%- if $data['allow_query'] -%>
+  allow-query { <%= Array($data['allow_query']).join('; ') %>; };
+  <%- end -%>
+  <%- if $data['ttl'] -%>
+  max-record-ttl <%= $data['ttl'] %>;
+  <%- end -%>
+};
+<% } -%>

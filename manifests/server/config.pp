@@ -7,6 +7,10 @@ class dns::server::config (
   $owner                = $dns::server::params::owner,
   $group                = $dns::server::params::group,
   $enable_default_zones = true,
+  $dynamic_include_dir  = '/etc/named/zones.d',
+  $dynamic_keys_file    = 'dynamic-keys.conf',
+  $dynamic_zones_file   = 'dynamic-zones.conf',
+  $manage_dynamic_includes = false,
 ) inherits dns::server::params {
 
   file { $cfg_dir:

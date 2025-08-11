@@ -1,5 +1,10 @@
 # Change Log
 
+## 1.1.0
+
+### Added
+- Optional generation of dynamic include files for TSIG keys and dynamic zones.
+
 ## [2.1.0](https://github.com/ajjahn/puppet-dns/tree/2.1.0) (2017-01-26)
 [Full Changelog](https://github.com/ajjahn/puppet-dns/compare/v2.0.2...2.1.0)
 
